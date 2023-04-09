@@ -1,36 +1,46 @@
 #include <iostream>
 
 // task 1
-int findMinimum(int* arr, int i, int size, int min) {
+int findMinimumHidden(int* arr, int i, int size, int min) {
     if (i == size) return min;
     if (arr[i] < min) {
         min = arr[i];
     }
-    return findMinimum(arr, ++i, size, min);
+    return findMinimumHidden(arr, ++i, size, min);
+}
+
+int findMinimum(int* arr, int size) {
+    return findMinimumHidden(arr, 1, size, arr[0]);
 }
 
 // task 2
-double calculateAverage(int* arr, int i, int size) {
+double calculateAverageHidden(int* arr, int i, int size) {
     if (i == size) return 0;
-    return (double)arr[i]/size + calculateAverage(arr, ++i, size);
+    return (double)arr[i]/size + calculateAverageHidden(arr, ++i, size);
+}
+
+double calculateAverage(int* arr, int size) {
+    return calculateAverageHidden(arr, 0, size);
 }
 
 // task 3
-void isPrime(int number, int checker) {
+bool isPrime(int number, int checker) {
     if (checker < 2) {
-        std::cout << "Prime!";
-        return;
+        return true;
     }
     if (number < 2) {
-        std::cout << "Not prime!";
-        return;
+        return false;
     }
 
     if (number % checker == 0) {
-        std::cout << "Not prime!";
+        return false;
     } else {
         isPrime(number, --checker);
     }
+}
+
+void isPrime(int number) {
+    std::cout << (isPrime(number, number-1) ? "Prime!" : "Not prime!");
 }
 
 // task 4
@@ -43,45 +53,56 @@ int factorial(int number) {
 
 // task 5
 int fibonacci(int number) {
-    if (number < 2) return 1;
+    if (number < 2 && number > 0) return 1;
+    if (number == 0) return 0;
     return fibonacci(number-1) + fibonacci(number-2);
 }
 
 // task 6
 double pow(int number, int degree) {
     if (degree == 0) return 1.0;
-    else if (degree > 0) {
-        return (number * pow(number, --degree));
-    } else {
-        return (1/(double)number) * pow(number, ++degree);
-    }
+    if (degree > 0) return (number * pow(number, --degree));
+    return (1/(double)number) * pow(number, ++degree);
 }
 
 // task 7
-// string should be converted to char array
-void findPermutations(char letters[], int l, int r) {
+void findPermutationsHidden(char letters[], int l, int r) {
     if (l == r) {
         std::cout << letters << std::endl;
     } else {
         for (int i = l; i <= r; i++) {
             std::swap(letters[l], letters[i]);
-            findPermutations(letters, l + 1, r);
+            findPermutationsHidden(letters, l + 1, r);
             std::swap(letters[l], letters[i]);
         }
     }
 }
 
+char* StringToCharArray(std::string str) {
+    char* arr = new char(str.size());
+    for (int i = 0; i < str.size(); i++) {
+        arr[i] = str[i];
+    }
+    return arr;
+}
+
+void findPermutations(std::string word) {
+    findPermutationsHidden(StringToCharArray(word), 0, word.size());
+}
+
 // task 8
-void isNumber(std::string input, int i) {
-    if (i == input.length()) {
-        std::cout << "Yes";
-        return;
-    }
+bool hasOnlyNumbers(std::string input, int i) {
+    if (i == input.length()) return true;
+
     if (input[i] >= '0' and input[i] <= '9') {
-        isNumber(input, ++i);
+        hasOnlyNumbers(input, ++i);
     } else {
-        std::cout << "No";
+        return false;
     }
+}
+
+void hasOnlyNumbers(std::string str) {
+    std::cout << hasOnlyNumbers(str, 0) ? "Yes" : "No";
 }
 
 // task 9
@@ -115,5 +136,7 @@ int findGCD(int first, int second) {
 }
 
 int main() {
+    using namespace std;
+
     return 0;
 }
