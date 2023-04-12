@@ -1,6 +1,8 @@
-﻿namespace assignment2;
+﻿using System.Collections;
 
-public class MyLinkedList<T>
+namespace assignment2;
+
+public class MyLinkedList<T> : IEnumerable<T>
 {
 
     private class MyNode
@@ -187,4 +189,19 @@ public class MyLinkedList<T>
         return _length;
     }
     
+    public IEnumerator<T> GetEnumerator()
+    {
+        var temp = _head;
+
+        while (temp != null)
+        {
+            yield return temp.data;
+            temp = temp.next;
+        }
+    }
+    
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
 }
