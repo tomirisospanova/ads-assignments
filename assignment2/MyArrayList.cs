@@ -85,6 +85,16 @@ public class MyArrayList<T>
         int index = IndexOf(item);
         if (index == -1)
             return false;
+
+        Remove(index);
+        
+        return true;
+    }
+
+    public bool Remove(int index)
+    {
+        if (index >= _length)
+            return false;
         
         for (int i = index; i < _length - 1; i++)
         {
@@ -133,7 +143,4 @@ public class MyArrayList<T>
         return false;
     }
     
-    
-
-
 }
