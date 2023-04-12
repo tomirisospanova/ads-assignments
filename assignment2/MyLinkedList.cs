@@ -40,6 +40,26 @@ public class MyLinkedList<T>
         _length++;
     }
 
+    public void AddAll(IEnumerable<T> collection)
+    {
+        foreach (T item in collection)
+        {
+            Add(item);
+        }
+    }
+
+    public void AddFirst(T item)
+    {
+        Add(item, 0);
+    }
+
+    public void Clear()
+    {
+        _length = 0;
+        _head = null;
+        _tail = null;
+    }
+
     public void Add(T item, int index)
     {
         if (index < 0 || index > _length)
