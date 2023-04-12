@@ -14,6 +14,18 @@ public class MyArrayList<T>
         _hiddenArr = new object[initCapacity];
     }
 
+    private void IncreaseArray() 
+    {
+        int newSize = (int)(_hiddenArr.Length * 1.5);
+        object[] newArr = new object[newSize];
+
+        for (int i = 0; i < _hiddenArr.Length; i++) 
+        {
+            newArr[i] = _hiddenArr[i];
+        }
+
+        _hiddenArr = newArr;
+    }
 
 
     
