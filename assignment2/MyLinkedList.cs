@@ -144,6 +144,16 @@ public class MyLinkedList<T>
         return temp.data;
     }
 
+    public T GetFirst()
+    {
+        return _head.data;
+    }
+
+    public T GetLast()
+    {
+        return _tail.data;
+    }
+
     public void Remove(int index)
     {
         if (index < 0 || index >= _length)
