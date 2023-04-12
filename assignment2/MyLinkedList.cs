@@ -40,6 +40,39 @@ public class MyLinkedList<T>
         _length++;
         
     }
+
+    public void Replace(T item, int index)
+    {
+        if (index < 0 || index >= _length)
+            throw new IndexOutOfRangeException();
+
+        MyNode newNode = new MyNode(item);
+        MyNode temp = _head;
+        for (int i = 0; i < index; i++)
+        {
+            temp = temp.next;
+        }
+
+        if (temp.prev == null)
+        {
+            newNode.next = temp.next;
+            temp.next.prev = newNode;
+            _head = newNode;
+        }
+        else if (temp.next == null)
+        {
+            newNode.prev = temp.prev;
+            temp.prev.next = newNode;
+            _tail = newNode;
+        }
+        else
+        {
+            newNode.prev = temp.prev;
+            newNode.next = temp.next;
+            newNode.prev.next = newNode;
+            newNode.next.prev = newNode;
+        }
+    }
     
     public T Get(int index) 
     {
