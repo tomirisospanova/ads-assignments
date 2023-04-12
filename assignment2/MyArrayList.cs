@@ -38,7 +38,7 @@ public class MyArrayList<T>
 
     public T Get(int index)
     {
-        if (index >= _hiddenArr.Length) 
+        if (index >= _length) 
             throw new IndexOutOfRangeException();
 
         return _hiddenArr[index];
@@ -53,7 +53,7 @@ public class MyArrayList<T>
 
     public int IndexOf(T item)
     {
-        for (int i = 0; i < _hiddenArr.Length; i++)
+        for (int i = 0; i < _length; i++)
         {
             if (_hiddenArr[i].Equals(item))
                 return i;
@@ -68,7 +68,7 @@ public class MyArrayList<T>
         if (index == -1)
             return false;
         
-        for (int i = index; i < _hiddenArr.Length - 1; i++)
+        for (int i = index; i < _length - 1; i++)
         {
             _hiddenArr[i] = _hiddenArr[i + 1];
         }
@@ -102,6 +102,17 @@ public class MyArrayList<T>
         }
 
         return outputArr;
+    }
+
+    public bool Contains(T item)
+    {
+        for (int i = 0; i < _length; i++)
+        {
+            if (_hiddenArr[i].Equals(item))
+                return true;
+        }
+
+        return false;
     }
 
 
