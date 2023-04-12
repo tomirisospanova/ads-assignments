@@ -26,6 +26,16 @@ public class MyArrayList<T>
 
         _hiddenArr = newArr;
     }
+    
+    public void Add(object item)
+    {
+        if (_length == _hiddenArr.Length)
+        {
+            IncreaseArray();
+        }
+
+        _hiddenArr[_length++] = item;
+    }
 
 
     
