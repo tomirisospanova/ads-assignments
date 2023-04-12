@@ -1,31 +1,33 @@
 ﻿namespace assignment2;
 
-public class MyArrayList<T> 
+public class MyArrayList<T>
 {
-    
+
     private T[] _hiddenArr;
     private int _length;
 
-    public MyArrayList() : this(5) {}
+    public MyArrayList() : this(5)
+    {
+    }
 
-    public MyArrayList(int initCapacity) 
+    public MyArrayList(int initCapacity)
     {
         _hiddenArr = new T[initCapacity];
     }
 
-    private void IncreaseArray() 
+    private void IncreaseArray()
     {
         int newSize = (int)(_hiddenArr.Length * 1.5);
         T[] newArr = new T[newSize];
 
-        for (int i = 0; i < _hiddenArr.Length; i++) 
+        for (int i = 0; i < _hiddenArr.Length; i++)
         {
             newArr[i] = _hiddenArr[i];
         }
 
         _hiddenArr = newArr;
     }
-    
+
     public void Add(T item)
     {
         if (_length == _hiddenArr.Length)
@@ -34,6 +36,24 @@ public class MyArrayList<T>
         }
 
         _hiddenArr[_length++] = item;
+    }
+
+    public void AddAll(IEnumerable<T> collection)
+    {
+        foreach (T item in collection)
+        {
+            Add(item);
+        }
+    }
+
+    public bool Add(T item, int index)
+    {
+        if (index <= _length)
+            return false;
+
+        _hiddenArr[index] = item;
+        
+        return true;
     }
 
     public T Get(int index)
@@ -48,8 +68,6 @@ public class MyArrayList<T>
     {
         return _length;
     }
-    
-    
 
     public int IndexOf(T item)
     {
@@ -114,6 +132,8 @@ public class MyArrayList<T>
 
         return false;
     }
+    
+    
 
 
 }
