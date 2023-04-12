@@ -39,4 +39,17 @@ public class MyLinkedList<T>
         
     }
     
+    public T Get(int index) 
+    {
+        if (index >= _length) 
+            throw new IndexOutOfRangeException();
+        
+        MyNode temp = _head;
+        for (int i = 0; i < index; i++) {
+            temp = temp.next;
+        }
+        
+        return temp.data;
+    }
+    
 }
