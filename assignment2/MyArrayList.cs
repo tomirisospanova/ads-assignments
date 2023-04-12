@@ -44,5 +44,10 @@ public class MyArrayList<T>
 
         return (T)_hiddenArr[index];
     }
+
+    public int Size()
+    {
+        return _length;
+    }
     
 }
