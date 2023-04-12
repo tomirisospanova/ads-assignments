@@ -62,5 +62,21 @@ public class MyArrayList<T>
         return -1;
     }
 
+    public bool Remove(T item)
+    {
+        int index = IndexOf(item);
+        if (index == -1)
+            return false;
+        
+        for (int i = index; i < _hiddenArr.Length - 1; i++)
+        {
+            _hiddenArr[i] = _hiddenArr[i + 1];
+        }
+
+        _length--;
+
+        return true;
+    }
+
 
 }
