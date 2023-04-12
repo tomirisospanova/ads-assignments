@@ -1,6 +1,8 @@
-﻿namespace assignment2;
+﻿using System.Collections;
 
-public class MyArrayList<T>
+namespace assignment2;
+
+public class MyArrayList<T> : IEnumerable<T>
 {
 
     private T[] _hiddenArr;
@@ -141,6 +143,19 @@ public class MyArrayList<T>
         }
 
         return false;
+    }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        for (int i = 0; i < _length; i++)
+        {
+            yield return _hiddenArr[i];
+        }
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
     
 }
