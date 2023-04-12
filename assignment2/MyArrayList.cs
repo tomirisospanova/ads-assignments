@@ -48,5 +48,19 @@ public class MyArrayList<T>
     {
         return _length;
     }
+    
+    
+
+    public int IndexOf(T item)
+    {
+        for (int i = 0; i < _hiddenArr.Length; i++)
+        {
+            if (_hiddenArr[i].Equals(item))
+                return i;
+        }
+
+        return -1;
+    }
+
 
 }
