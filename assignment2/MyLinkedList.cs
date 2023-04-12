@@ -15,29 +15,28 @@ public class MyLinkedList<T>
         }
     }
 
-    private MyNode head;
-    private int length;
+    private MyNode _head;
+    private MyNode _tail;
+    private int _length;
 
     public void Add(T item)
     {
         MyNode newNode = new MyNode(item);
-        length++;
-        if (head == null)
+        
+        if (_length == 0)
         {
-            head = newNode;
-            return;
+            _head = newNode;
+            _tail = newNode;
+        }
+        else
+        {
+            newNode.prev = _tail;
+            _tail.next = newNode;
+            _tail = newNode;
         }
 
-        MyNode temp = head;
-        while (temp.next != null)
-        {
-            temp = temp.next;
-        }
-
-        temp.next = newNode;
-        temp.next.prev = temp;
+        _length++;
+        
     }
-
     
 }
-
