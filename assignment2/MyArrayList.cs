@@ -17,7 +17,7 @@ public class MyArrayList<T>
 
     private void IncreaseArray()
     {
-        int newSize = (int)(_hiddenArr.Length * 1.5);
+        int newSize = _hiddenArr.Length * 2;
         T[] newArr = new T[newSize];
 
         for (int i = 0; i < _hiddenArr.Length; i++)
