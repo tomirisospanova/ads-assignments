@@ -81,5 +81,10 @@ public class MyLinkedList<T>
 
         _length--;
     }
+
+    public int Size()
+    {
+        return _length;
+    }
     
 }
