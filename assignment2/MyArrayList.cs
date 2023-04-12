@@ -36,7 +36,13 @@ public class MyArrayList<T>
 
         _hiddenArr[_length++] = item;
     }
+    
+    public T Get(int index)
+    {
+        if (index >= _hiddenArr.Length) 
+            throw new IndexOutOfRangeException();
 
-
+        return (T)_hiddenArr[index];
+    }
     
 }
