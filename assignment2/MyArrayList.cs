@@ -48,14 +48,29 @@ public class MyArrayList<T> : IEnumerable<T>
         }
     }
 
-    public bool Add(T item, int index)
+    public void Add(T item, int index)
     {
-        if (index <= _length)
-            return false;
+        if (index < 0 || index > _length)
+            throw new IndexOutOfRangeException();
+        if (index == _length)
+            IncreaseArray();
+
+        for (int i = _length; i > index; i--)
+        {
+            _hiddenArr[i] = _hiddenArr[i - 1];
+        }
 
         _hiddenArr[index] = item;
         
-        return true;
+        _length++;
+    }
+    
+    public void Replace(T item, int index)
+    {
+        if (index >= _length)
+            throw new IndexOutOfRangeException();
+
+        _hiddenArr[index] = item;
     }
 
     public T Get(int index)
