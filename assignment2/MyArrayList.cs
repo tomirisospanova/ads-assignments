@@ -78,5 +78,13 @@ public class MyArrayList<T>
         return true;
     }
 
+    public void RemoveAll(IEnumerable<T> collection)
+    {
+        foreach(T item in collection)
+        {
+            Remove(item);
+        }
+    }
+
 
 }
