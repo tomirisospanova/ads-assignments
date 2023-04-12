@@ -92,5 +92,17 @@ public class MyArrayList<T>
         _length = 0;
     }
 
+    public T[] ToArray()
+    {
+        T[] outputArr = new T[_length];
+
+        for (int i = 0; i < _length; i++)
+        {
+            outputArr[i] = _hiddenArr[i];
+        }
+
+        return outputArr;
+    }
+
 
 }
