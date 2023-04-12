@@ -86,5 +86,11 @@ public class MyArrayList<T>
         }
     }
 
+    public void Clear()
+    {
+        _hiddenArr = new T[5];
+        _length = 0;
+    }
+
 
 }
