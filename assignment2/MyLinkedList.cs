@@ -184,6 +184,20 @@ public class MyLinkedList<T> : IEnumerable<T>
         _length--;
     }
 
+    public bool Contains(T item)
+    {
+        MyNode temp = _head;
+        for (int i = 0; i < _length; i++)
+        {
+            if (temp.data.Equals(item))
+                return true;
+
+            temp = temp.next;
+        }
+
+        return false;
+    }
+
     public int Size()
     {
         return _length;
