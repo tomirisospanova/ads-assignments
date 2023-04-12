@@ -86,15 +86,15 @@ public class MyLinkedList<T> : IEnumerable<T>
         else
         {
             MyNode temp = _head;
-            for (int i = 0; i < _length; i++)
+            for (int i = 0; i < index; i++)
             {
                 temp = temp.next;
             }
 
-            newNode.next = temp.next;
-            newNode.prev = temp;
+            newNode.next = temp;
+            newNode.prev = temp.prev;
+            temp.prev.next = newNode;
             temp.next.prev = newNode;
-            temp.next = newNode;
         }
 
         _length++;
@@ -218,4 +218,5 @@ public class MyLinkedList<T> : IEnumerable<T>
     {
         return GetEnumerator();
     }
+    
 }
