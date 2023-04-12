@@ -5,6 +5,7 @@ public class MyLinkedList<T>
 
     private class MyNode
     {
+        
         public readonly T data;
         public MyNode prev;
         public MyNode next;
@@ -13,6 +14,7 @@ public class MyLinkedList<T>
         {
             this.data = data;
         }
+        
     }
 
     private MyNode _head;
@@ -50,6 +52,34 @@ public class MyLinkedList<T>
         }
         
         return temp.data;
+    }
+
+    public void Remove(int index)
+    {
+        if (index < 0 || index >= _length)
+            throw new IndexOutOfRangeException();
+
+        MyNode temp = _head;
+        for (int i = 0; i < index; i++)
+        {
+            temp = temp.next;
+        }
+
+        if (temp.next != null)
+        {
+            temp.next.prev = temp.prev;
+        }
+
+        if (temp.prev == null)
+        {
+            _head = temp.next;
+        }
+        else
+        {
+            temp.prev.next = temp.next;
+        }
+
+        _length--;
     }
     
 }
